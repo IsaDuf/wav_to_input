@@ -12,7 +12,8 @@ Most of the dsp is built on the librosa library.
 
 ### Dependencies
 
-* Prerequisites, libraries, OS version, etc. (requirements.txt)
+Since this is a pipeline based on librosa to create h5 datasets, both librosa and h5py are required.
+
 
 ### Installing
 
