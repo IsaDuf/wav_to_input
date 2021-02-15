@@ -206,7 +206,7 @@ def main():
     dataset = '/'.join([config.dataset] * 2)
     test_df = df.loc[df['split'] == 'test']
     train_df = df.loc[df['split'] == 'train']
-    val_df = df.loc[df['split'] == 'val']
+    val_df = df.loc[df['split'] == 'validate']
 
     # create h5 file and populates splits group, and hyper-parameters as info attributes
     with h5py.File('data/' + dataset + '.h5', 'w') as f:
