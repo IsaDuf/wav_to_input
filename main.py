@@ -4,8 +4,6 @@ import numpy as np
 import pandas as pd
 import h5py
 from multiprocessing import Process, Lock
-
-
 from config import *
 
 
@@ -13,7 +11,8 @@ def print_dataset_details(df):
     """
     Print a few information about the dataset.
 
-    Implementation is limited to immediate needs, but should be extended.
+    Implementation is limited to immediate needs (SONYC-UST dataset dataset),
+    but should be extended tot arbitrary datasets.
 
     Parameters
     ----------
@@ -24,10 +23,10 @@ def print_dataset_details(df):
     None
 
     """
-    hour = list(df['hour'])
-    print("hour data:")
-    for i in range(0, 24):
-        print('{}: {}'.format(i, hour.count(i)))
+    # hour = list(df['hour'])
+    # print("hour data:")
+    # for i in range(24):
+    #     print('{}: {}'.format(i, hour.count(i)))
 
     split = list(df['split'])
 
@@ -40,7 +39,8 @@ def create_df():
     """
     Create a pandas DataFrame from annotations.csv.
 
-    Assumes the annotations.csv file is in data/config.dataset/ directory.
+    Assumes the annotations.csv file is in data/<config.dataset>/ directory.
+    Implemented for SONYC-UST dataset, should be extended to arbitrary datasets.
 
     Returns
     -------
@@ -188,6 +188,7 @@ def main():
     diverse attributes of a given audio dataset and annotations.csv.
 
     Can be distributed over multiple cores by specifying the number of cores available through the --num_cpu argument.
+
     Returns
     -------
     None
@@ -195,7 +196,7 @@ def main():
     n_sample = 'all' if config.load_limit is None else str(config.load_limit)
     print("Processing {} samples in {}".format(n_sample, config.dataset))
 
-    # create a file of all audio files contained in directory
+    # create a list of all audio files contained in directory
     files = librosa.util.find_files(config.data_dir,
                                     ext=config.ext,
                                     limit=config.load_limit)
